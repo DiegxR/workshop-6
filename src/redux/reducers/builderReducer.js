@@ -23,39 +23,47 @@ const initialState = {
             price: 20
         }
     ],
-    total: 0,
     selectedIngredients: [],
+    totalBurger: 0,
     burgers: [],
+    totalPrice: 0
 };
 
 export const builderReducer = (state = initialState, action) => {
     switch (action.type) {
         case builderTypes.ADD_INGREDIENT:
+            const ingredient = state.ingredients.find(ingredient => ingredient.id == action.payload);
             return {
                 ...state,
-                selectedIngredients: [...state.selectedIngredients, action.payload]
+                selectedIngredients: [...state.selectedIngredients, action.payload],
+                totalBurger: state.total + ingredient.price
             };
         case builderTypes.REMOVE_INGREDIENT:
+             let element = 0
             return {
                 ...state,
                 selectedIngredients: selectedIngredients.map((item, index) => {
                     if (index !== action.payload) {
                         return item;
+                    }else{
+                        element = item
                     }
-                })
+                }),
+                totalBurger: state.total - state.ingredients.find((ingredient) => ingredient.id === element).price
             }
         case builderTypes.CONFIRM_BURGER:
             return {
                 ...state,
                 burgers: [...state.burgers, action.payload],
                 selectedIngredients: [],
-                total: 0
+                totalPrice: totalPrice + action.payload.total,
             }
 
         case builderTypes.DELETE_BURGER:
             return {
                 ...state,
-                burgers: state.burgers.filter(burger => burger.id !== action.payload),
+                burgers: state.burgers.find(burger => burger.id !== action.payload),
+                totalPrice: state.totalPrice - state.burgers.find(burger => burger.id !== action.payload).total
             }
         default:
             return state;
