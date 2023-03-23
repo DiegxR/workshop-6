@@ -62,7 +62,7 @@ export const builderReducer = (state = initialState, action) => {
         case builderTypes.DELETE_BURGER:
             return {
                 ...state,
-                burgers: state.burgers.find(burger => burger.id !== action.payload),
+                burgers: state.burgers.filter(burger => burger.id !== action.payload),
                 totalPrice: state.totalPrice - state.burgers.find(burger => burger.id !== action.payload).total
             }
         default:
