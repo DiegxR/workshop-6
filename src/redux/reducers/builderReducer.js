@@ -37,12 +37,12 @@ export const builderReducer = (state = initialState, action) => {
   switch (action.type) {
     case builderTypes.ADD_INGREDIENT:
       const ingredient = state.ingredients.find(
-        (ingredient) => ingredient.id == action.payload
+        (ingredient) => ingredient.id === action.payload
       );
       return {
         ...state,
         selectedIngredients: [...state.selectedIngredients, action.payload],
-        totalBurger: state.total + ingredient.price,
+        totalBurger: state.totalBurger + ingredient.price,
       };
     case builderTypes.REMOVE_INGREDIENT:
       let element = 0;
@@ -65,6 +65,7 @@ export const builderReducer = (state = initialState, action) => {
         ...state,
         burgers: [...state.burgers, action.payload],
         selectedIngredients: [],
+        totalBurger: 0,
         totalPrice: totalPrice + action.payload.total,
       };
 
@@ -74,7 +75,7 @@ export const builderReducer = (state = initialState, action) => {
         burgers: state.burgers.filter((burger) => burger.id !== action.payload),
         totalPrice:
           state.totalPrice -
-          state.burgers.find((burger) => burger.id !== action.payload).total,
+          state.burgers.find((burger) => burger.id === action.payload).total,
       };
     default:
       return state;

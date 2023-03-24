@@ -1,15 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addIngredient } from "../../redux/actions/builderActions";
+import { addIngredient, confirmBurger } from "../../redux/actions/builderActions";
 import Ingredient from "../ingredient/Ingredient";
 import { BurgerSC } from "./styles.js";
 
 const Burger = () => {
-  const { selectedIngredients, ingredients } = useSelector(
+  const { selectedIngredients, ingredients, totalBurger, TotalPrice } = useSelector(
     (store) => store.builder
   );
   const dispatch = useDispatch();
-  console.log(selectedIngredients);
+  console.log({selectedIngredients, totalBurger});
   return (
     <>
       {ingredients.map((ingredient, index) => (
@@ -25,16 +25,18 @@ const Burger = () => {
           />
         </button>
       ))}
-      <BurgerSC>
-        {/* <Bread variable="top" />
+      <button onClick={()=> dispatch(confirmBurger())}>Add Burger</button>
+
+      {/* <BurgerSC>
+        <Bread variable="top" />
       {selectedIngredients.map((ingredient, index) => (
         <Ingredient />
       ))}
-      <Bread variable="bottom" /> */}
+      <Bread variable="bottom" />
         {selectedIngredients.map((ingredient, index) => (
           <Ingredient key={index} />
         ))}
-      </BurgerSC>
+      </BurgerSC> */}
     </>
   );
 };
