@@ -1,9 +1,14 @@
-import React from 'react'
+import Burger from "../Burger/Burger";
+import NavBar from "../navBar/NavBar";
 
 const Builder = () => {
   return (
-    <div>Builder</div>
-  )
-}
+    <>
+      <NavBar />
+      <div>Builder</div>
+      <Burger />
+    </>
+  );
+};
 
-export default Builder
+export default Builder;
