@@ -5,7 +5,7 @@ import Ingredient from "../ingredient/Ingredient";
 import { BurgerSC } from "./styles.js";
 
 const Burger = () => {
-  const { selectedIngredients, ingredients, totalBurger, TotalPrice } = useSelector(
+  const { selectedIngredients, ingredients, totalBurger, TotalPrice, burgers } = useSelector(
     (store) => store.builder
   );
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Burger = () => {
           />
         </button>
       ))}
-      <button onClick={()=> dispatch(confirmBurger())}>Add Burger</button>
+      <button onClick={()=> dispatch(confirmBurger(totalBurger,selectedIngredients, burgers.length+1 ))}>Add Burger</button>
 
       {/* <BurgerSC>
         <Bread variable="top" />

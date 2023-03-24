@@ -1,7 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import './receipt.scss'
 
 const Receipt = () => {
+  const {totalBurger, totalPrice, burgers} = useSelector(store => store.builder)
+  console.log({totalBurger: totalBurger, totalPrice: totalPrice, burgers: burgers})
   return (
     <div className='receipt'>
       <section className='receipt__info'>

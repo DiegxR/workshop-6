@@ -66,7 +66,7 @@ export const builderReducer = (state = initialState, action) => {
         burgers: [...state.burgers, action.payload],
         selectedIngredients: [],
         totalBurger: 0,
-        totalPrice: totalPrice + action.payload.total,
+        totalPrice: state.totalPrice + action.payload.total,
       };
 
     case builderTypes.DELETE_BURGER:
