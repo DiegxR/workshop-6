@@ -27,7 +27,7 @@ const confirmBurger = (total, ingredients, id) => {
 
 const removeBurger = (id) => {
   return {
-    type: builderTypes.REMOVE_BURGER,
+    type: builderTypes.DELETE_BURGER,
     payload: id,
   };
 };
