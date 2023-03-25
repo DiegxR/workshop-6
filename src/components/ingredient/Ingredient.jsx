@@ -1,23 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { ImgsWrapperSC } from "./ingredients";
 
-import "./ingredient.scss";
-
-function Ingredient() {
+function Ingredients() {
   const { selectedIngredients } = useSelector((store) => store.builder);
-  const lastIngredient = selectedIngredients.lenght - 1;
-  // const burgerIngredients = [];
-  // selectedIngredients.map((ingredient) =>
-  //   burgerIngredients.push(ingredient.img)
-  // );
-  // console.log(burgerIngredients);
+
   return (
-    <>
-      {/* {selectedIngredients.map((ingredient, index) => (
-        <img key={index} src={ingredient.img} alt="ingredient" />
-      ))} */}
-    </>
+    <ImgsWrapperSC>
+      {selectedIngredients.map((ingredient, index) => (
+        <img key={index} src={ingredient?.burgerImg} alt="ingredient" />
+      ))}
+    </ImgsWrapperSC>
   );
 }
 
-export default Ingredient;
+export default Ingredients;
