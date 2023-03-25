@@ -31,5 +31,10 @@ const removeBurger = (id) => {
     payload: id,
   };
 };
+const resetReceipt = () => {
+  return {
+    type: builderTypes.RESET_RECEIPT,
+  }
+}
 
-export { addIngredient, removeIngredient, confirmBurger, removeBurger };
+export { addIngredient, removeIngredient, confirmBurger, removeBurger, resetReceipt };

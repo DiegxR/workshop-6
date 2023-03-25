@@ -1,11 +1,13 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { resetReceipt } from '../../redux/actions/builderActions'
 import './receipt.scss'
 
 const Receipt = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { totalBurger, totalPrice, burgers } = useSelector(store => store.builder)
   console.log({ totalBurger: totalBurger, totalPrice: totalPrice, burgers: burgers })
 
@@ -31,6 +33,8 @@ const Receipt = () => {
       cancelButtonColor: '#d33',
     }).then((response) => {
       if (response.isConfirmed) {
+        dispatch(resetReceipt())
+        
         Swal.fire({
           icon:'success',
           title: '¡Hecho!',

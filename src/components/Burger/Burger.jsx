@@ -18,7 +18,7 @@ const Burger = () => {
         {ingredients.map((ingredient, index) => (
           <button
             key={index}
-            onClick={() => dispatch(addIngredient(ingredient))}
+            onClick={() => dispatch(addIngredient(ingredient.id))}
           >
             <img src={ingredient.img} alt="Ingredient" />
           </button>
