@@ -14,29 +14,29 @@ const ListIngredients = () => {
   return (
     <article className="ingredients-section">
       <p className="ingredients-title">Tu lista de ingredientes</p>
-      <section className="ingredients-container">
+      <div className="ingredients-container">
         {selectedIngredients.length ? (
           selectedIngredients.map((ingredient, index) => (
             <div key={index} className="each-ingredient">
               <p>{ingredients.find((item) => item.id === ingredient).name}</p>
               <AiOutlineClose
                 className="button-delete"
-                onClick={() => dispatch(removeIngredient(ingredient))}
+                onClick={() => dispatch(removeIngredient(index))}
               />
             </div>
           ))
         ) : (
-          <section className="section-ingredients-empty">
+          <div className="section-ingredients-empty">
             <h1 className="empty-title">
               Agrega ingredientes a tu hamburguesa!
             </h1>
             <FaHamburger className="empty-icon" />
-          </section>
+          </div>
         )}
-      </section>
+      </div>
       <p className="total-ingredients">
         Total de tu hamburguesa:
-        <span> {totalBurger}</span>
+        <span>$ {totalBurger} Lucas </span>
       </p>
     </article>
   );

@@ -4,28 +4,28 @@ const initialState = {
   ingredients: [
     {
       id: "1",
-      name: "tomato",
+      name: "Tomate",
       price: 5,
       img: "https://media.giphy.com/media/Q7vCyGPv3clKD94AY2/giphy.gif",
       burgerImg: "https://media.giphy.com/media/DI5EBIwO53zrfimMXQ/giphy.gif",
     },
     {
       id: "2",
-      name: "lechuga",
+      name: "Lechuga sabrosona",
       price: 2,
       img: "https://media.giphy.com/media/EYti70jChQnEVM1bhM/giphy.gif",
       burgerImg: "https://media.giphy.com/media/Jof8PIVfJDeA8PPhGO/giphy.gif",
     },
     {
       id: "3",
-      name: "cheese",
+      name: "Quesito sabroso",
       price: 5,
       img: "https://media.giphy.com/media/3og0IJa2xGWfhLf7s4/giphy.gif",
       burgerImg: "https://media.giphy.com/media/OtvkAzmbqiaXma7Din/giphy.gif",
     },
     {
       id: "4",
-      name: "meat",
+      name: "Carne jugosa",
       price: 20,
       img: "https://raw.githubusercontent.com/Danielaigm/whorkshop6-equipo1/main/src/assets/carne_cut.png",
       burgerImg: "https://media.giphy.com/media/qnXRXCK0iJsIL8JKkU/giphy.gif",
@@ -50,21 +50,17 @@ export const builderReducer = (state = initialState, action) => {
         totalBurger: state.totalBurger + ingredient.price,
       };
     case builderTypes.REMOVE_INGREDIENT:
-      let element = 0;
-      // let ingredients = state.selectedIngredients.filter(
-      //   (item) => item.id !== action.payload
-      // );
-      console.log(state.selectedIngredients[0]);
-      console.log(action.payload);
       return {
         ...state,
         selectedIngredients: state.selectedIngredients.filter(
-          (item) => item !== action.payload
+          (_, index) => index !== action.payload
         ),
-        // totalBurger:
-        //   state.total -
-        //   state.ingredients.find((ingredient) => ingredient.id === element)
-        //     .price,
+        totalBurger:
+          state.totalBurger -
+          state.ingredients.find(
+            (ingredient) =>
+              ingredient.id === state.selectedIngredients[action.payload]
+          ).price,
       };
     case builderTypes.CONFIRM_BURGER:
       return {
@@ -85,8 +81,8 @@ export const builderReducer = (state = initialState, action) => {
       };
     case builderTypes.RESET_RECEIPT:
       return {
-        ...initialState
-      }  
+        ...initialState,
+      };
     default:
       return state;
   }

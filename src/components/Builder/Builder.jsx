@@ -8,8 +8,12 @@ const Builder = () => {
   return (
     <>
       <section className="builder-container">
-        <Burger />
-        <ListIngredients />
+        <section className="builder-container__burguer">
+          <Burger />
+        </section>
+        <section className="builder-container__ingredients">
+          <ListIngredients />
+        </section>
       </section>
     </>
   );
