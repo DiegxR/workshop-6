@@ -1,17 +1,21 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addIngredient, confirmBurger } from "../../redux/actions/builderActions";
+import "./burger.scss";
+import {
+  addIngredient,
+  confirmBurger,
+} from "../../redux/actions/builderActions";
 import Ingredient from "../ingredient/Ingredient";
 import { BurgerSC } from "./styles.js";
 
 const Burger = () => {
-  const { selectedIngredients, ingredients, totalBurger, TotalPrice } = useSelector(
-    (store) => store.builder
-  );
+  const { selectedIngredients, ingredients, totalBurger, TotalPrice } =
+    useSelector((store) => store.builder);
   const dispatch = useDispatch();
-  console.log({selectedIngredients, totalBurger});
+  console.log({ selectedIngredients, totalBurger });
+
   return (
-    <>
+    <aside className="burger-container">
       {ingredients.map((ingredient, index) => (
         <button
           className="button-ingredient"
@@ -25,7 +29,7 @@ const Burger = () => {
           />
         </button>
       ))}
-      <button onClick={()=> dispatch(confirmBurger())}>Add Burger</button>
+      <button onClick={() => dispatch(confirmBurger())}>Add Burger</button>
 
       {/* <BurgerSC>
         <Bread variable="top" />
@@ -37,7 +41,7 @@ const Burger = () => {
           <Ingredient key={index} />
         ))}
       </BurgerSC> */}
-    </>
+    </aside>
   );
 };
 

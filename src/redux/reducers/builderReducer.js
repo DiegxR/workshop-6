@@ -46,19 +46,20 @@ export const builderReducer = (state = initialState, action) => {
       };
     case builderTypes.REMOVE_INGREDIENT:
       let element = 0;
+      // let ingredients = state.selectedIngredients.filter(
+      //   (item) => item.id !== action.payload
+      // );
+      console.log(state.selectedIngredients[0]);
+      console.log(action.payload);
       return {
         ...state,
-        selectedIngredients: selectedIngredients.map((item, index) => {
-          if (index !== action.payload) {
-            return item;
-          } else {
-            element = item;
-          }
-        }),
-        totalBurger:
-          state.total -
-          state.ingredients.find((ingredient) => ingredient.id === element)
-            .price,
+        selectedIngredients: state.selectedIngredients.filter(
+          (item) => item !== action.payload
+        ),
+        // totalBurger:
+        //   state.total -
+        //   state.ingredients.find((ingredient) => ingredient.id === element)
+        //     .price,
       };
     case builderTypes.CONFIRM_BURGER:
       return {

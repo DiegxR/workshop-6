@@ -25,7 +25,7 @@ const NavBar = () => {
             alt="icon-hamburger"
           />
         </figure>
-        <p className="nav__title">Hamburger</p>
+        <p className="nav__title">Hamburguesa</p>
       </div>
       <ul className="nav__ul">
         <li>
@@ -34,7 +34,7 @@ const NavBar = () => {
             className={activeHome ? "active" : "nav__ul__li"}
             onClick={handleHome}
           >
-            Home
+            Inicio
           </NavLink>
         </li>
         <li>
@@ -43,7 +43,7 @@ const NavBar = () => {
             className={activeReceipt ? "active" : "nav__ul__li"}
             onClick={handleReceipt}
           >
-            Receipt
+            Recibo
           </NavLink>
         </li>
       </ul>
