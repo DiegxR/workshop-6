@@ -43,10 +43,11 @@ export const builderReducer = (state = initialState, action) => {
       const ingredient = state.ingredients.find(
         (ingredient) => ingredient.id === action.payload
       );
+      console.log(ingredient);
       return {
         ...state,
         selectedIngredients: [...state.selectedIngredients, action.payload],
-        // totalBurger: state.totalBurger + ingredient.price,
+        totalBurger: state.totalBurger + ingredient.price,
       };
     case builderTypes.REMOVE_INGREDIENT:
       let element = 0;
@@ -82,6 +83,10 @@ export const builderReducer = (state = initialState, action) => {
           state.totalPrice -
           state.burgers.find((burger) => burger.id === action.payload).total,
       };
+    case builderTypes.RESET_RECEIPT:
+      return {
+        ...initialState
+      }  
     default:
       return state;
   }

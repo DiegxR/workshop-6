@@ -4,4 +4,5 @@ export const builderTypes = {
     GET_PRICE : 'GET_PRICE',
     CONFIRM_BURGER : 'CONFIRM_BURGER',
     DELETE_BURGER : 'DELETE_BURGER',
+    RESET_RECEIPT : 'RESET_RECEIPT',
 }
