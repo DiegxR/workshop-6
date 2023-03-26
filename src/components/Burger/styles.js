@@ -14,11 +14,16 @@ export const Bread = styled.div`
   background-image: url(${(props) => props.img});
   background-repeat: no-repeat;
   height: 150px;
-  width: 100%;
+  padding-left: 4rem;
+  width: 90% !important;
   display:flex;
   justify-content: center;
 
-  transform: rotateX(45deg);
+  & >img{
+    
+  }
+
+
 
 `
 

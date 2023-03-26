@@ -14,6 +14,8 @@ import {
 } from "./styles.js";
 import './burger.scss'
 
+import { motion } from "framer-motion";
+
 const Burger = () => {
   const { selectedIngredients, ingredients, totalBurger, TotalPrice, burgers } =
     useSelector((store) => store.builder);
@@ -59,10 +61,12 @@ const Burger = () => {
           <img src="https://i.ibb.co/F3fNLqH/panTop.png" alt="panTop" />
           </Bread>
           <Ingredients />
+          <motion.div>
           <Bread
             variant="bottom"
           ><img src="https://i.ibb.co/PCN4pR7/pancito.png" alt="panBottom" />
           </Bread>
+          </motion.div>
         </BurgerSC>
           </section>  
       </ContainerbtnCS>
