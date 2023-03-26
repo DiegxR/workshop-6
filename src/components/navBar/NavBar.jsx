@@ -39,7 +39,7 @@ const NavBar = () => {
         </figure>
         <p className="nav__title">Hamburguesa</p>
       </div>
-      <ul className="nav__ul">
+      {/* <ul className="nav__ul">
         <motion.div
           variants={variants}
           animate={activeHomeLink ? "home" : "receipt"}
@@ -64,7 +64,7 @@ const NavBar = () => {
             Recibo
           </NavLink>
         </li>
-      </ul>
+      </ul> */}
     </nav>
   );
 };

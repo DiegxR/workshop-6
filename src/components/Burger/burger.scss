@@ -1,5 +1,16 @@
-//Big container burger
-.burger-container {
-  width: 80%;
-  border: 1px solid blue;
-}
+.button-confirm {
+    color: rgb(238, 127, 0);
+    border: 1px solid rgb(238, 127, 0);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5%;
+    align-items: center;
+    align-self: center;
+    gap: 8px;
+    display: flex;
+
+    &:hover {
+        background-color: rgb(238, 127, 0);
+        color: rgb(255, 255, 255);
+    }
+  }

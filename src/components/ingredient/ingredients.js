@@ -4,9 +4,11 @@ export const ImgsWrapperSC = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  height: 100%;
   & > img {
-    width: 40%;
-    z-index: 1;
+    width: 500px;
+    height: 100%;
+
+    
   }
 `;

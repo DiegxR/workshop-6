@@ -9,9 +9,9 @@ import {
   BtnWrapperSC,
   Bread,
   BurgerSC,
-  TextSC,
   ContainerbtnCS,
 } from "./styles.js";
+import './burger.scss'
 
 const Burger = () => {
   const { selectedIngredients, ingredients, totalBurger, TotalPrice, burgers } =
@@ -32,7 +32,7 @@ const Burger = () => {
           ))}
         </BtnWrapperSC>
 
-        <button
+        <button className="button-confirm"
           onClick={() =>
             dispatch(
               confirmBurger(
@@ -43,16 +43,18 @@ const Burger = () => {
             )
           }
         >
-          <TextSC>Agregar hamburgesa</TextSC>
+         Agregar hamburgesa
         </button>
 
         <BurgerSC>
-          <Bread img="https://media.giphy.com/media/shZBRqVpESNRF6ns1H/giphy.gif"></Bread>
+          <Bread>
+          <img src="https://i.ibb.co/F3fNLqH/panTop.png" alt="panTop" />
+          </Bread>
           <Ingredients />
           <Bread
             variant="bottom"
-            img="https://media.giphy.com/media/7DEoxyxXo03jip8aoL/giphy.gif"
-          ></Bread>
+          ><img src="https://i.ibb.co/PCN4pR7/pancito.png" alt="panBottom" />
+          </Bread>
         </BurgerSC>
       </ContainerbtnCS>
     </>

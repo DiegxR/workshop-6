@@ -1,12 +1,12 @@
-//Big container builder
 .builder-container {
+  // background-color: rebeccapurple;
   display: flex;
-  border: 1px solid red;
   height: 100vh;
   width: 100%;
 
   &__burguer {
     width: 70%;
+    // background-color: red;
   }
   &__ingredients {
     width: 30%;
