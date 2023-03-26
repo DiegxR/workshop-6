@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Swal from "sweetalert2";
 import {
   addIngredient,
   confirmBurger,
@@ -17,6 +18,19 @@ const Burger = () => {
   const { selectedIngredients, ingredients, totalBurger, TotalPrice, burgers } =
     useSelector((store) => store.builder);
   const dispatch = useDispatch();
+  const handleBurger = () =>{
+    if(selectedIngredients.length !== 0){
+      dispatch(
+        confirmBurger(
+          totalBurger,
+          selectedIngredients,
+          burgers.length + 1
+        )
+      )
+    }else{
+      Swal.fire('Elija los ingredientes para su hamburguesa')
+    }
+  }
   console.log({ selectedIngredients, totalBurger });
   return (
     <>
@@ -34,20 +48,15 @@ const Burger = () => {
 
         <button
           onClick={() =>
-            dispatch(
-              confirmBurger(
-                totalBurger,
-                selectedIngredients,
-                burgers.length + 1
-              )
-            )
+            handleBurger()
           }
         >
           <TextSC>Agregar hamburgesa</TextSC>
         </button>
 
         <BurgerSC>
-          <Bread img="https://media.giphy.com/media/shZBRqVpESNRF6ns1H/giphy.gif"></Bread>
+          <Bread
+           img="https://media.giphy.com/media/shZBRqVpESNRF6ns1H/giphy.gif"></Bread>
           <Ingredients />
           <Bread
             variant="bottom"

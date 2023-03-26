@@ -9,41 +9,38 @@ export const ContainerbtnCS = styled.section`
 export const BurgerSC = styled.section`
   display: flex;
   flex-direction: column;
-  margin-top: 20px
+  
   margin: auto;
   &:nth-child(3) {
-    margin-top: -2rem;
+    margin-top: 0rem;
   }
 `;
 
 export const Bread = styled.div`
   background-image: url(${(props) => props.img});
   background-repeat: no-repeat;
+  background-size: contain;
   height: 8rem;
   width: 100%;
-  align-self: center;
-  margin: auto;
-
+  
   &:nth-child(1) {
     margin-bottom: -0.9rem;
   }
 
   ${(props) =>
-    props.variant ? "margin-top: -3rem; transform: rotateZ(-3deg);" : ""}
+    props.variant ? "margin-top: -3rem; transform: rotateZ(-3deg); width: 80%;" : ""}
 `;
 
 export const BtnWrapperSC = styled.div`
   display: flex;
-
   justify-content: center;
-  gap: 7rem;
+  gap: 1rem;
   width: 100%;
-
   & > button {
     width: 4rem;
 
     &:nth-child(2n - 1) {
-      margin-top: 4rem;
+      margin-top: 0;
     }
 
     & > img {
@@ -54,4 +51,9 @@ export const BtnWrapperSC = styled.div`
 
 export const TextSC = styled.p`
   color: #040306;
+  background-color: rgb(255, 196, 2);
+  width: 200px;
+  margin: auto;
+  border-radius: 15px;
+  padding: 4px;
 `;

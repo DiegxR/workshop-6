@@ -1,6 +1,6 @@
 .receipt {
     background-image: url(https://fondosmil.com/fondo/91188.jpg);
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-position: center;
     background-size: cover;
@@ -81,5 +81,19 @@
 
 
     }
-
+    .iconclose{
+        display: none;
+    }
+    .showclose{
+        display: block;
+        align-self: center;
+        color: red;
+        font-weight: 800;
+        cursor: pointer;
+    }
+    .pr{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
 }

@@ -4,15 +4,21 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { resetReceipt } from '../../redux/actions/builderActions'
 import './receipt.scss'
+import { FaTrashAlt } from "react-icons/fa";
 
+import { useState } from 'react'
 const Receipt = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [showDelete, setShowDelete] = useState(-1)
   const { totalBurger, totalPrice, burgers } = useSelector(store => store.builder)
+  
+  const handleDelete= () =>{
+    Swal.fire('¿Está seguro de eliminar esta hamburguesa?')
+  }
   console.log({ totalBurger: totalBurger, totalPrice: totalPrice, burgers: burgers })
 
   const nameBurger = (ingredients) => {
-    console.log(ingredients);
     if (ingredients.length <= 3) {
       return 'Hamburguesa sencilla'
     }
@@ -77,7 +83,7 @@ const Receipt = () => {
             <tbody>
               {burgers.map((burger, index) => (
                 <tr key={index}>
-                  <td>{nameBurger(burger.ingredients)}</td>
+                  <td className='pr' onMouseLeave={()=> setShowDelete(-1)} onMouseEnter={()=> setShowDelete(index)}> <FaTrashAlt onClick={handleDelete} className={`iconclose ${index == showDelete ? 'showclose' : ''}`}/>{nameBurger(burger.ingredients)}</td>
                   <td>{burger.ingredients.length}</td>
                   <td>$ {burger.total} lucas</td>
                 </tr>

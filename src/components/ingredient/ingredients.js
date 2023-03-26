@@ -3,10 +3,13 @@ import styled from "styled-components";
 export const ImgsWrapperSC = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-self: baseline;
   justify-content: center;
+  
   & > img {
-    width: 40%;
-    z-index: 1;
+    width: 80%;
+    z-index: 2;
+    margin-top: -20px;
+  margin-bottom: -20px;
   }
 `;

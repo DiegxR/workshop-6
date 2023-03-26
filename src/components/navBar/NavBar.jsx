@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./navBar.scss";
+import { useSelector } from "react-redux";
 
 const variants = {
-  receipt: { x: "170%" },
+  receipt: { x: "70%" },
   home: { x: "-20%" },
 };
 
@@ -12,7 +13,7 @@ const NavBar = () => {
   const [activeHome, setActiveHome] = useState(false);
   const [activeReceipt, setActiveReceipt] = useState(false);
   const [activeHomeLink, setActiveHomeLink] = useState(true);
-
+  const {burgers} = useSelector(store => store.builder)
   const handleHome = () => {
     setActiveHome(true);
     setActiveReceipt(false);
@@ -49,7 +50,7 @@ const NavBar = () => {
         <li>
           <NavLink
             to="./"
-            className={activeHome ? "active" : "nav__ul__li"}
+            className={activeHome ? "active " : "nav__ul__li"}
             onClick={(handleHome, handleActiveLink)}
           >
             Inicio
@@ -62,6 +63,7 @@ const NavBar = () => {
             onClick={(handleReceipt, handleActiveLink)}
           >
             Recibo
+            {burgers.length !== 0 ? <span className="noti">{burgers.length}</span> : <></>}
           </NavLink>
         </li>
       </ul>
