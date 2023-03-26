@@ -7,6 +7,7 @@ import "./builder.scss";
 const Builder = () => {
   return (
     <>
+    <NavBar />
       <section className="builder-container">
         <section className="builder-container__burguer">
           <Burger />

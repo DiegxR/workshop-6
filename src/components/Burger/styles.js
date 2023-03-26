@@ -1,47 +1,39 @@
 import styled from "styled-components";
 
 export const ContainerbtnCS = styled.section`
-  border: 1px solid blue;
   display: flex;
-  flex-direction: column;
   width: 100%;
 `;
 export const BurgerSC = styled.section`
   display: flex;
   flex-direction: column;
-  
-  margin: auto;
-  &:nth-child(3) {
-    margin-top: 0rem;
-  }
+  margin-top: 20px;
 `;
 
 export const Bread = styled.div`
   background-image: url(${(props) => props.img});
   background-repeat: no-repeat;
-  background-size: contain;
-  height: 8rem;
+  height: 150px;
   width: 100%;
-  
-  &:nth-child(1) {
-    margin-bottom: -0.9rem;
-  }
+  display:flex;
+  justify-content: center;
 
-  ${(props) =>
-    props.variant ? "margin-top: -3rem; transform: rotateZ(-3deg); width: 80%;" : ""}
-`;
+  transform: rotateX(45deg);
+
+`
 
 export const BtnWrapperSC = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  width: 100%;
-  & > button {
-    width: 4rem;
+  width: 100px;
+  margin-top: 10%;
 
-    &:nth-child(2n - 1) {
-      margin-top: 0;
-    }
+  & > button {
+    border: 1px solid rgb(230, 230, 230);;
+    border-radius: 10px;
+
 
     & > img {
       width: 100%;
@@ -49,11 +41,3 @@ export const BtnWrapperSC = styled.div`
   }
 `;
 
-export const TextSC = styled.p`
-  color: #040306;
-  background-color: rgb(255, 196, 2);
-  width: 200px;
-  margin: auto;
-  border-radius: 15px;
-  padding: 4px;
-`;

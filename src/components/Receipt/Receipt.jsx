@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-import { resetReceipt } from '../../redux/actions/builderActions'
+import { removeBurger, resetReceipt } from '../../redux/actions/builderActions'
 import './receipt.scss'
 import { FaTrashAlt } from "react-icons/fa";
 
@@ -13,8 +13,27 @@ const Receipt = () => {
   const [showDelete, setShowDelete] = useState(-1)
   const { totalBurger, totalPrice, burgers } = useSelector(store => store.builder)
   
-  const handleDelete= () =>{
-    Swal.fire('¿Está seguro de eliminar esta hamburguesa?')
+  const handleDelete= (id) =>{
+    Swal.fire({
+      icon: 'info',
+      title: '¿No quieres esta hamburguesa 😢?',
+      text: '¡Mira que está bien sabrosa!',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((response) => {
+      if (response.isConfirmed) {
+        dispatch(removeBurger(id))
+        
+        Swal.fire({
+          icon:'success',
+          title: 'Tú te lo pierdes!',
+          text: '¡Ya la hemos botado a la basura 😭!',
+          confirmButtonColor: '#3085d6',
+        })
+      }
+    })
+    .catch((error) => {console.log(error);})
   }
   console.log({ totalBurger: totalBurger, totalPrice: totalPrice, burgers: burgers })
 
@@ -83,7 +102,7 @@ const Receipt = () => {
             <tbody>
               {burgers.map((burger, index) => (
                 <tr key={index}>
-                  <td className='pr' onMouseLeave={()=> setShowDelete(-1)} onMouseEnter={()=> setShowDelete(index)}> <FaTrashAlt onClick={handleDelete} className={`iconclose ${index == showDelete ? 'showclose' : ''}`}/>{nameBurger(burger.ingredients)}</td>
+                  <td className='pr' onMouseLeave={()=> setShowDelete(-1)} onMouseEnter={()=> setShowDelete(index)}> <FaTrashAlt onClick={()=>handleDelete(burger.id)} className={`iconclose ${index == showDelete ? 'showclose' : ''}`}/>{nameBurger(burger.ingredients)}</td>
                   <td>{burger.ingredients.length}</td>
                   <td>$ {burger.total} lucas</td>
                 </tr>

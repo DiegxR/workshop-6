@@ -4,6 +4,7 @@ import { ImgsWrapperSC } from "./ingredients";
 import './styles.scss'
 import {motion} from 'framer-motion'
 
+
 function Ingredients() {
   const { selectedIngredients, ingredients } = useSelector(
     (store) => store.builder

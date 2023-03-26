@@ -1,10 +1,11 @@
-//Big container builder
 .builder-container {
+  // background-color: rebeccapurple;
   display: flex;
   height: 100vh;
   width: 100%;
   &__burguer {
     width: 70%;
+    // background-color: red;
   }
   &__ingredients {
     width: 30%;
@@ -22,20 +23,5 @@
       display: flex;
     }
   }
-  .Queso{
-    margin-bottom: -20px !important;
-    z-index: 4 !important;
-}
-}
-@media(max-width: 440px){
-  .iCQKWE{
-    width: 65% !important;
-  }
-  .iAHxtp {
-    width: 65% !important;
-    }
-  .cdpWAw {
-      width: 70%;
-      margin-left: 3%;
-  }
+
 }
