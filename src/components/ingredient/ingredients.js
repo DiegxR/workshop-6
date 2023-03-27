@@ -6,7 +6,6 @@ export const ImgsWrapperSC = styled.div`
   align-items: center;
   height: 100%;
   & > img {
-    width: 500px;
-    height: 100%;
+    width: 90%;
   }
 `;

@@ -115,6 +115,8 @@ const Receipt = () => {
           </div>
 
           <small><strong>Vendedor:</strong>  Wilinton Ascanio</small>
+          <small><strong>El de los juguitos:</strong> Andres Vélez</small>
+
 
 
         </section>

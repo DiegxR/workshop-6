@@ -60,21 +60,30 @@
   height: 100%;
 }
 .pay-button{
-  color: white;
-  background-color:rgb(238, 127, 0);
+  color: rgb(238, 127, 0);
+  border: 1px solid rgb(238, 127, 0);
   padding: 10px;
   border-radius: 5px;
   margin-top: 5%;
   align-items: center;
   gap: 8px;
   display: flex;
+
+  &:hover {
+    background-color: rgb(238, 127, 0);
+    color: white;
+  }
 }
 .pay-icon {
   font-size: 20px;
 }
 .pay-link {
-  color: white;
+  color: rgb(238, 127, 0);
   text-decoration: none;
+
+  &:hover {
+    color: white;
+  }
 }
 .button-confirm {
   color: rgb(238, 127, 0);
@@ -85,6 +94,11 @@
   align-items: center;
   gap: 8px;
   display: flex;
+
+  &:hover {
+    background-color: rgb(238, 127, 0);
+    color: white;
+  }
 }
 //Ingredients empty
 .section-ingredients-empty {

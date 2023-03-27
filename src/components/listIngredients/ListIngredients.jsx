@@ -7,12 +7,21 @@ import {GiConfirmed} from "react-icons/gi";
 import { FaHamburger } from "react-icons/fa";
 import { removeIngredient } from "../../redux/actions/builderActions";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
+
 
 const ListIngredients = () => {
-  const { selectedIngredients, totalBurger, ingredients } = useSelector(
+  const { selectedIngredients, totalBurger, ingredients, burgers } = useSelector(
     (store) => store.builder
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
+
+
 
   return (
     <article className="ingredients-section">
@@ -30,7 +39,7 @@ const ListIngredients = () => {
                 onClick={() => dispatch(removeIngredient(index))}
               />
             </div>
-          ))
+          )) 
         ) : (
           <div className="section-ingredients-empty">
             <h1 className="empty-title">
@@ -46,10 +55,22 @@ const ListIngredients = () => {
       </p>
       <div style={{display: "flex", gap: "5px"}}>
  
-      <button className="pay-button">
+      <button className="pay-button" onClick={() => {
+        if(burgers.length > 0) {
+          navigate('/receipt')
+
+        }
+        else{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Hamburguesas de aire no vendemos, agregue 1',
+          })
+        }
+        }} >
         <MdOutlineAttachMoney className="pay-icon"/>
-        <Link className="pay-link" to="/receipt">Ir a pagar</Link>
-        </button>
+        Ir a pagar
+      </button>
       </div>
     </article>
   );

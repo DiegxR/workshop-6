@@ -6,34 +6,36 @@ import {
   confirmBurger,
 } from "../../redux/actions/builderActions";
 import Ingredients from "../ingredient/Ingredient";
-import {
-  BtnWrapperSC,
-  Bread,
-  BurgerSC,
-  ContainerbtnCS,
-} from "./styles.js";
-import './burger.scss'
+import { BtnWrapperSC, Bread, BurgerSC, ContainerbtnCS } from "./styles.js";
+import "./burger.scss";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const Burger = () => {
-  const { selectedIngredients, ingredients, totalBurger, TotalPrice, burgers } =
+  const { selectedIngredients, ingredients, totalBurger, burgers } =
     useSelector((store) => store.builder);
+
+  const [isShown, setIsShown] = useState(false);
+
   const dispatch = useDispatch();
-  const handleBurger = () =>{
-    if(selectedIngredients.length !== 0){
+
+  const handleInterval = () => {
+    setTimeout(() => {
+      setIsShown(false);
+    }, 500);
+  };
+
+  const handleBurger = () => {
+    if (selectedIngredients.length !== 0) {
+      setIsShown(true);
       dispatch(
-        confirmBurger(
-          totalBurger,
-          selectedIngredients,
-          burgers.length + 1
-        )
-      )
-    }else{
-      Swal.fire('Elija los ingredientes para su hamburguesa')
+        confirmBurger(totalBurger, selectedIngredients, burgers.length + 1)
+      );
+    } else {
+      Swal.fire("Elija los ingredientes para su hamburguesa");
     }
-  }
-  console.log({ selectedIngredients, totalBurger });
+  };
   return (
     <>
       <ContainerbtnCS>
@@ -47,28 +49,39 @@ const Burger = () => {
             </button>
           ))}
         </BtnWrapperSC>
-          <section className="burgercontainer">
-        <button className="button-confirm"
-          onClick={() =>
-            handleBurger()
-          }
-        >
-         Agregar hamburgesa
-        </button>
+        <section className="burgercontainer">
+          <motion.button
+            transition={{ duration: 1 }}
+            className="button-confirm"
+            onClick={() => {
+              handleBurger();
+            }}
+          >
+            Agregar hamburgesa
+          </motion.button>
 
-        <BurgerSC>
-          <Bread>
-          <img src="https://i.ibb.co/F3fNLqH/panTop.png" alt="panTop" />
-          </Bread>
-          <Ingredients />
-          <motion.div>
-          <Bread
-            variant="bottom"
-          ><img src="https://i.ibb.co/PCN4pR7/pancito.png" alt="panBottom" />
-          </Bread>
-          </motion.div>
-        </BurgerSC>
-          </section>  
+          <BurgerSC>
+            <img
+              onLoad={handleInterval()}
+              className={isShown ? "" : "hidden"}
+              style={{ position: "fixed", width: "40vw" }}
+              src="https://media.giphy.com/media/drj4KPFH32Mw/giphy.gif"
+              alt=""
+            />
+            <Bread>
+              <img src="https://i.ibb.co/F3fNLqH/panTop.png" alt="panTop" />
+            </Bread>
+            <Ingredients />
+            <motion.div>
+              <Bread variant="bottom">
+                <img
+                  src="https://i.ibb.co/PCN4pR7/pancito.png"
+                  alt="panBottom"
+                />
+              </Bread>
+            </motion.div>
+          </BurgerSC>
+        </section>
       </ContainerbtnCS>
     </>
   );
