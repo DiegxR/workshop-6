@@ -1,42 +1,88 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addIngredient, confirmBurger } from "../../redux/actions/builderActions";
-import Ingredient from "../ingredient/Ingredient";
-import { BurgerSC } from "./styles.js";
+import Swal from "sweetalert2";
+import {
+  addIngredient,
+  confirmBurger,
+} from "../../redux/actions/builderActions";
+import Ingredients from "../ingredient/Ingredient";
+import { BtnWrapperSC, Bread, BurgerSC, ContainerbtnCS } from "./styles.js";
+import "./burger.scss";
+
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const Burger = () => {
-  const { selectedIngredients, ingredients, totalBurger, TotalPrice } = useSelector(
-    (store) => store.builder
-  );
+  const { selectedIngredients, ingredients, totalBurger, burgers } =
+    useSelector((store) => store.builder);
+
+  const [isShown, setIsShown] = useState(false);
+
   const dispatch = useDispatch();
-  console.log({selectedIngredients, totalBurger});
+
+  const handleInterval = () => {
+    setTimeout(() => {
+      setIsShown(false);
+    }, 500);
+  };
+
+  const handleBurger = () => {
+    if (selectedIngredients.length !== 0) {
+      setIsShown(true);
+      dispatch(
+        confirmBurger(totalBurger, selectedIngredients, burgers.length + 1)
+      );
+    } else {
+      Swal.fire("Elija los ingredientes para su hamburguesa");
+    }
+  };
   return (
     <>
-      {ingredients.map((ingredient, index) => (
-        <button
-          className="button-ingredient"
-          key={index}
-          onClick={() => dispatch(addIngredient(ingredient.id))}
-        >
-          <img
-            className="image-ingredient "
-            src={ingredient.img}
-            alt="Ingredient"
-          />
-        </button>
-      ))}
-      <button onClick={()=> dispatch(confirmBurger())}>Add Burger</button>
+      <ContainerbtnCS>
+        <BtnWrapperSC>
+          {ingredients.map((ingredient, index) => (
+            <button
+              key={index}
+              onClick={() => dispatch(addIngredient(ingredient.id))}
+            >
+              <img src={ingredient.img} alt="Ingredient" />
+            </button>
+          ))}
+        </BtnWrapperSC>
+        <section className="burgercontainer">
+          <motion.button
+            transition={{ duration: 1 }}
+            className="button-confirm"
+            onClick={() => {
+              handleBurger();
+            }}
+          >
+            Agregar hamburgesa
+          </motion.button>
 
-      {/* <BurgerSC>
-        <Bread variable="top" />
-      {selectedIngredients.map((ingredient, index) => (
-        <Ingredient />
-      ))}
-      <Bread variable="bottom" />
-        {selectedIngredients.map((ingredient, index) => (
-          <Ingredient key={index} />
-        ))}
-      </BurgerSC> */}
+          <BurgerSC>
+            <img
+              onLoad={handleInterval()}
+              className={isShown ? "" : "hidden"}
+              style={{ position: "fixed", width: "40vw" }}
+              src="https://media.giphy.com/media/drj4KPFH32Mw/giphy.gif"
+              alt=""
+            />
+            <Bread>
+              <img src="https://i.ibb.co/F3fNLqH/panTop.png" alt="panTop" />
+            </Bread>
+            <Ingredients />
+            <motion.div>
+              <Bread variant="bottom">
+                <img
+                  src="https://i.ibb.co/PCN4pR7/pancito.png"
+                  alt="panBottom"
+                />
+              </Bread>
+            </motion.div>
+          </BurgerSC>
+        </section>
+      </ContainerbtnCS>
     </>
   );
 };

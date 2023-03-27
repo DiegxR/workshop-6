@@ -1,12 +1,20 @@
 import Burger from "../Burger/Burger";
+import ListIngredients from "../listIngredients/ListIngredients";
 import NavBar from "../navBar/NavBar";
+import "./builder.scss";
 
 const Builder = () => {
   return (
     <>
       <NavBar />
-      <div>Builder</div>
-      <Burger />
+      <section className="builder-container">
+        <section className="builder-container__burguer">
+          <Burger />
+        </section>
+        <section className="builder-container__ingredients">
+          <ListIngredients />
+        </section>
+      </section>
     </>
   );
 };

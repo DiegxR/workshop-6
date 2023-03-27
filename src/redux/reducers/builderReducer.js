@@ -4,27 +4,31 @@ const initialState = {
   ingredients: [
     {
       id: "1",
-      name: "bacon",
-      price: 10,
-      img: "https://previews.123rf.com/images/bestfotostudio/bestfotostudio1608/bestfotostudio160800023/60626970-cooked-bacon-rashers-close-up-isolated-on-a-white-background.jpg",
+      name: "Tomate",
+      price: 5,
+      img: "https://i.ibb.co/k6hDX6F/tomate.png",
+      burgerImg: "https://i.ibb.co/qFXQ8dL/tomates.png",
     },
     {
       id: "2",
-      name: "salad",
+      name: "Lechuga",
       price: 2,
-      img: "https://thumbs.dreamstime.com/b/verdura-y-lechuga-del-tomate-31733966.jpg",
+      img: "https://i.ibb.co/9t32qPS/lechuga.png",
+      burgerImg: "https://i.ibb.co/tHpFNs8/lechuga.png",
     },
     {
       id: "3",
-      name: "cheese",
+      name: "Queso",
       price: 5,
       img: "https://www.merkadomi.com/wp-content/uploads/2020/11/QUESO-DOBLE-CREMA-TAJADO.jpg",
+      burgerImg: "https://i.ibb.co/GFfP2hF/quesito.png",
     },
     {
       id: "4",
-      name: "meat",
+      name: "Carne",
       price: 20,
       img: "https://media.istockphoto.com/id/1204417280/photo/grilled-hamburger-meat-isolated-on-white-background-clipping-path-full-depth-of-field.jpg?s=612x612&w=0&k=20&c=72xYpv2v3TuUB0SpMTa2lyBvc1K25o1bXQIx7iMHchM=",
+      burgerImg: "https://i.ibb.co/56P3Qd2/carne.png",
     },
   ],
   selectedIngredients: [],
@@ -39,26 +43,24 @@ export const builderReducer = (state = initialState, action) => {
       const ingredient = state.ingredients.find(
         (ingredient) => ingredient.id === action.payload
       );
+      console.log(ingredient);
       return {
         ...state,
         selectedIngredients: [...state.selectedIngredients, action.payload],
         totalBurger: state.totalBurger + ingredient.price,
       };
     case builderTypes.REMOVE_INGREDIENT:
-      let element = 0;
       return {
         ...state,
-        selectedIngredients: selectedIngredients.map((item, index) => {
-          if (index !== action.payload) {
-            return item;
-          } else {
-            element = item;
-          }
-        }),
+        selectedIngredients: state.selectedIngredients.filter(
+          (_, index) => index !== action.payload
+        ),
         totalBurger:
-          state.total -
-          state.ingredients.find((ingredient) => ingredient.id === element)
-            .price,
+          state.totalBurger -
+          state.ingredients.find(
+            (ingredient) =>
+              ingredient.id === state.selectedIngredients[action.payload]
+          ).price,
       };
     case builderTypes.CONFIRM_BURGER:
       return {
@@ -66,7 +68,7 @@ export const builderReducer = (state = initialState, action) => {
         burgers: [...state.burgers, action.payload],
         selectedIngredients: [],
         totalBurger: 0,
-        totalPrice: totalPrice + action.payload.total,
+        totalPrice: state.totalPrice + action.payload.total,
       };
 
     case builderTypes.DELETE_BURGER:
@@ -76,6 +78,10 @@ export const builderReducer = (state = initialState, action) => {
         totalPrice:
           state.totalPrice -
           state.burgers.find((burger) => burger.id === action.payload).total,
+      };
+    case builderTypes.RESET_RECEIPT:
+      return {
+        ...initialState,
       };
     default:
       return state;
