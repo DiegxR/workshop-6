@@ -20,3 +20,15 @@
 .hidden {
   opacity: 0;
 }
+
+.smoke {
+  position: absolute;
+  width: 40vw;
+  @media (max-width: 768px) {
+    width: 50vw;
+  }
+
+  @media (max-width: 576px) {
+    width: 25rem;
+  }
+}

@@ -63,8 +63,7 @@ const Burger = () => {
           <BurgerSC>
             <img
               onLoad={handleInterval()}
-              className={isShown ? "" : "hidden"}
-              style={{ position: "fixed", width: "40vw" }}
+              className={`smoke ${isShown ? "" : "hidden"}`}
               src="https://media.giphy.com/media/drj4KPFH32Mw/giphy.gif"
               alt=""
             />
